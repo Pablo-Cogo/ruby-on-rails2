@@ -1,0 +1,71 @@
+<div class="p-4">
+  <% if notice.present? %>
+    <p id="notice" class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4"><%= notice %></p>
+  <% end %>
+
+  <div class="flex justify-between items-center mb-4">
+    <h1 class="text-2xl font-bold">Loans</h1>
+    <%= link_to 'New Loan', new_loan_path, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer" %>
+  </div>
+
+  <table class="w-full table-auto mb-4">
+    <thead class="bg-gray-200 text-justify">
+      <tr>
+        <th class="py-2 px-4 border-b">Student</th>
+        <th class="py-2 px-4 border-b">Book</th>
+        <th class="py-2 px-4 border-b">Quantity</th>
+        <th class="py-2 px-4 border-b">Status</th>
+        <th class="py-2 px-4 border-b">Expected return date</th>
+        <th class="py-2 px-4 border-b">Fine</th>
+        <th class="py-2 px-4 border-b">Commands</th>
+      </tr>
+    </thead>
+
+    <tbody class="text-justify">
+      <% @loans.each do |loan| %>
+        <tr class="h-8 hover:bg-gray-100 border-b">
+          <td class="px-4 h-full"><%= loan.student.name %></td>
+          <td class="px-4 h-full"><%= loan.book.title %></td>
+          <td class="px-4 h-full"><%= loan.quantity %></td>
+          <td class="px-4 h-full">
+            <% if loan.returned? %>
+              <p class="text-green-500">Returned</p>
+            <% else %>
+              <p class="text-red-500">Loaned</p>
+            <% end %>
+          </td>
+          <td class="px-4 h-full"><%= loan.expected_return_date %></td>
+          <td class="px-4 h-full"><%= number_to_currency(loan.calculate_penalty) %></td>
+          <td class="px-4 h-full">
+            <div class="flex justify-start items-center h-full gap-x-4">
+              <%= link_to loan, class: "hover:bg-blue-500 py-1 px-1 rounded cursor-pointer parent-hover-invert", title: "Show" do %>
+                <%= image_tag("icons/eye.svg", alt: "Eye Icon", class: "min-w-16px") %>
+              <% end %>
+              <%= link_to edit_loan_path(loan), class: "hover:bg-yellow-500 py-1 px-1 rounded cursor-pointer parent-hover-invert", title: "Edit" do %>
+                <%= image_tag("icons/pen.svg", alt: "Pen Icon", class: "min-w-16px") %>
+              <% end %>
+              <%= link_to loan, class: "hover:bg-red-500 py-1 px-1 rounded cursor-pointer parent-hover-invert", method: :delete, data: { confirm: 'Are you sure?' }, title: "Delete" do %>
+                <%= image_tag("icons/trash.svg", alt: "trash Icon", class: "min-w-16px") %>
+              <% end %>
+              <% if loan.returned? %>
+                <div class="hover:bg-green-500 py-1 px-1 rounded cursor-pointer parent-hover-invert" title="Book already returned">
+                  <%= image_tag("icons/check-all.svg", alt: "trash Icon", class: "min-w-16px") %>
+                </div>
+              <% else %>
+                <% if loan.calculate_penalty > 0 %>
+                  <%= link_to return_loan_loan_path(loan), method: :post, data: { confirm: 'Warning: this customer has an outstanding fine, do you want to pay it now?' }, class: "hover:bg-green-500 py-1 px-1 rounded cursor-pointer parent-hover-invert", title: "Return Loan" do %>
+                    <%= image_tag("icons/check-all.svg", alt: "return load Icon", class: "min-w-16px") %>
+                  <% end %>
+                <% else %>
+                  <%= link_to return_loan_loan_path(loan), method: :post, class: "hover:bg-green-500 py-1 px-1 rounded cursor-pointer parent-hover-invert", title: "Return Loan" do %>
+                    <%= image_tag("icons/check-all.svg", alt: "trash Icon", class: "min-w-16px") %>
+                  <% end %>
+                <% end %>
+              <% end %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,11 @@
+{
+  "name": "myapp",
+  "private": true,
+  "dependencies": {
+    "notify-js-legacy": "^0.4.1",
+    "tailwindcss": "^1"
+  },
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT"
+}

@@ -1,0 +1,10 @@
+// Place all the styles related to the Loans controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.parent-hover-invert:hover > * {
+    filter: invert(1);
+}
+
+.min-w-16px{
+    min-width: 16px;
+}

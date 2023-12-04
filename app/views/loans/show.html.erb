@@ -1,0 +1,45 @@
+<div class="max-w-md mx-auto my-8 p-6 bg-white rounded-lg shadow-lg">
+  <% if notice.present? %>
+    <p id="notice" class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4"><%= notice %></p>
+  <% end %>
+
+  <p class="mb-2">
+    <strong class="text-gray-700">Student:</strong>
+    <%= @loan.student.name %>
+  </p>
+
+  <p class="mb-2">
+    <strong class="text-gray-700">Book:</strong>
+    <%= @loan.book.title %>
+  </p>
+
+  <p class="mb-2">
+    <strong class="text-gray-700">Quantity:</strong>
+    <%= @loan.quantity %>
+  </p>
+
+  <p class="mb-2">
+    <strong class="text-gray-700">Loan date:</strong>
+    <%= @loan.loan_date %>
+  </p>
+
+  <p class="mb-2">
+    <strong class="text-gray-700">Expected return date:</strong>
+    <%= @loan.expected_return_date %>
+  </p>
+
+  <p class="mb-2">
+    <strong class="text-gray-700">Return date:</strong>
+    <%= @loan.return_date %>
+  </p>
+
+  <p class="mb-4">
+    <strong class="text-gray-700">Fine:</strong>
+    <%= number_to_currency(@loan.calculate_penalty) %>
+  </p>
+
+  <div class="flex">
+    <%= link_to 'Edit', edit_loan_path(@loan), class: "mr-4 text-blue-500 hover:underline" %>
+    <%= link_to 'Back', loans_path, class: "text-gray-700 hover:underline" %>
+  </div>
+</div>

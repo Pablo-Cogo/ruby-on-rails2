@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  student: one
+  book: one
+  quantity: 1
+  loan_date: 2023-12-03
+  return_date: 2023-12-03
+  expected_return_date: 2023-12-03
+  fine: 9.99
+
+two:
+  student: two
+  book: two
+  quantity: 1
+  loan_date: 2023-12-03
+  return_date: 2023-12-03
+  expected_return_date: 2023-12-03
+  fine: 9.99

@@ -1,0 +1,12 @@
+<div class="max-w-md mx-auto my-8 p-6 bg-white rounded-lg shadow-lg">
+  <h1 class="text-2xl font-bold mb-4">
+    <div class="bg-blue-500 text-white p-4">
+        New Student
+    <div>
+  </h1>
+
+  <%= render 'form', student: @student %>
+    <div class="w-full flex justify-end">
+        <%= link_to 'Back', students_path, class: "mt-4 text-sm text-gray-700 hover:underline" %>
+    </div>
+</div>
