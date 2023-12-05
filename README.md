@@ -2,6 +2,20 @@
 
 ## Ruby on Rails
 
+## Instalação do projeto
+- bundle install - instala as dependencias do projeto.
+- rails db:create - cria o banco de dados da aplicação baseado no database.yml
+- rails db:migrate - cria as tabelas e relações do banco.
+
+**caso não tenha o yarn instalado:**
+
+- sudo apt install npm
+- sudo npm install --global yarn
+
+***posteriomente instala o tailwindcss***
+
+yarn add tailwindcss@1.0.0
+
 ### Task
 
 - `rails new app_name`: Cria uma nova aplicação Rails com o nome especificado.
